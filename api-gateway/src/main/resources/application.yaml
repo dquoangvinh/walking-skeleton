@@ -7,6 +7,6 @@ spring:
         webmvc:
           routes:
             - id: catalog
-              uri: http://localhost:8082
+              uri: ${CATALOG_URI:http://localhost:8082}
               predicates:
                 - Path=/api/v1/products,/api/v1/products/**
