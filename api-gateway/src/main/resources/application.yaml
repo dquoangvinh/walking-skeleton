@@ -1,0 +1,12 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: catalog
+              uri: http://localhost:8082
+              predicates:
+                - Path=/api/v1/products,/api/v1/products/**
