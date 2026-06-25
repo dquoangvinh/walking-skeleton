@@ -23,5 +23,4 @@ jobs:
 
       - name: Build ${{ matrix.service }}
         working-directory: ${{ matrix.service }}
-        run: |
-          chmod +x mvnw ./mvnw -B clean package -Dmaven.test.skip=true
+        run: chmod +x mvnw && ./mvnw -B clean package -Dmaven.test.skip=true
