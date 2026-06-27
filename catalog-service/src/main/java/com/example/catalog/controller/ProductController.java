@@ -21,9 +21,11 @@ public class ProductController {
     @GetMapping(value = "api/v1/products")
     public List<ProductSummary> getProducts(@RequestParam(required = false) String include) {
         boolean withReviews = "reviews".equals(include);
-        return productRepository.findAll().stream()
-                .map(p -> new ProductSummary(p.getId(),
-                               p.getName(),
+        List<Product> products = withReviews
+                ? productRepository.findAllWithReviews()
+                : productRepository.findAll();
+        return products.stream()
+                .map(p -> new ProductSummary(p.getId(), p.getName(),
                                withReviews ? p.getReviews().size() : null))
                 .toList();
     }
