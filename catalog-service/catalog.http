@@ -1,8 +1,8 @@
-###
-GET http://localhost:8080/api/v1/products
+### Products WITH review count (triggers @EntityGraph join, no N+1) -> 200
+GET http://localhost:8082/api/v1/products?include=reviews
 
-###
+### Products WITHOUT reviews -> 200, reviewCount = null
 GET http://localhost:8082/api/v1/products
 
-###
-GET http://localhost:8082/api/v1/products?include=reviews
+### Invalid include value -> 400 (validation)
+GET http://localhost:8082/api/v1/products?include=xyz

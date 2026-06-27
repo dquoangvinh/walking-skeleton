@@ -3,7 +3,6 @@ package com.example.catalog.controller;
 import com.example.catalog.dto.ProductSummary;
 import com.example.catalog.service.ProductService;
 import jakarta.validation.constraints.Pattern;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@Validated
 public class ProductController {
 
     private final ProductService productService;
