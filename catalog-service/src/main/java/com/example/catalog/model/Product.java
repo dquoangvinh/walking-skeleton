@@ -2,8 +2,8 @@ package com.example.catalog.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -15,10 +15,17 @@ public class Product {
     private String name;
 
     @OneToMany(mappedBy = "product")
-    private List<Review> reviews = new ArrayList<>();
+    private Set<Review> reviews = new LinkedHashSet<>();
 
-    public List<Review> getReviews() {
+    @OneToMany(mappedBy = "product")
+    private Set<ProductImage> images = new LinkedHashSet<>();
+
+    public Set<Review> getReviews() {
         return reviews;
+    }
+
+    public Set<ProductImage> getImages() {
+        return images;
     }
 
     protected Product() {
@@ -35,4 +42,5 @@ public class Product {
     public void setName(String name) {
         this.name = name;
     }
+
 }

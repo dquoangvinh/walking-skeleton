@@ -1,8 +1,16 @@
-### Products WITH review count (triggers @EntityGraph join, no N+1) -> 200
+### include=reviews -> reviewCount, @EntityGraph (1 query, no N+1)
 GET http://localhost:8082/api/v1/products?include=reviews
 
-### Products WITHOUT reviews -> 200, reviewCount = null
+### include=images -> thumbnailUrl, @EntityGraph (1 query, no N+1)
+GET http://localhost:8082/api/v1/products?include=images
+
+### include both (query params on separate lines - avoids IntelliJ inline-& bug)
+GET http://localhost:8082/api/v1/products
+        ?include=reviews
+        &include=images
+
+### no include -> id + name only
 GET http://localhost:8082/api/v1/products
 
-### Invalid include value -> 400 (validation)
+### unknown include -> ignored, plain list (no validation currently)
 GET http://localhost:8082/api/v1/products?include=xyz

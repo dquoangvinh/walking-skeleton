@@ -8,7 +8,16 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
+
+    @EntityGraph(attributePaths = {"reviews", "images"})
+    @Query("SELECT p FROM Product p")
+    List<Product> findAllWithReviewAndImages();
+
     @EntityGraph(attributePaths = "reviews")
     @Query("SELECT p FROM Product p")
     List<Product> findAllWithReviews();
+
+    @EntityGraph(attributePaths = "images")
+    @Query("SELECT p FROM Product p")
+    List<Product> findAllWithImages();
 }
